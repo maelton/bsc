@@ -1,0 +1,8 @@
+# vscode
+.vscode/
+
+# codex
+.codex
+
+# env
+.env
