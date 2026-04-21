@@ -10,7 +10,11 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.constraints.NotBlank;
+import lombok.Getter;
+import lombok.Setter;
 
+@Setter
+@Getter
 @Entity
 @Table(
     name = "tb_organization_value",
@@ -34,4 +38,9 @@ public class OrganizationValueEntity {
     
     @Column(nullable=false) @NotBlank
     private String text;
+
+    public OrganizationValueEntity(String text, OrganizationEntity organization) {
+        this.organization = organization;
+        this.text = text;
+    }
 }

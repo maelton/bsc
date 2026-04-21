@@ -1,7 +1,6 @@
 package br.com.maelton.bsc.domain.organization.entity;
 
 import java.util.Set;
-import java.util.UUID;
 
 public class Organization {
     private OrganizationId id;
