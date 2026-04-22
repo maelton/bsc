@@ -4,6 +4,7 @@
 /home/maelton/Projects/br.com.maelton/bsc/src/main/java/br/com/maelton/bsc/application/organization/port/out/OrganizationRepository.java
 /home/maelton/Projects/br.com.maelton/bsc/src/main/java/br/com/maelton/bsc/application/organization/usecase/OrganizationService.java
 /home/maelton/Projects/br.com.maelton/bsc/src/main/java/br/com/maelton/bsc/architecture/annotation/ApplicationService.java
+/home/maelton/Projects/br.com.maelton/bsc/src/main/java/br/com/maelton/bsc/bootstrap/BscApplication.java
 /home/maelton/Projects/br.com.maelton/bsc/src/main/java/br/com/maelton/bsc/domain/organization/entity/Organization.java
 /home/maelton/Projects/br.com.maelton/bsc/src/main/java/br/com/maelton/bsc/domain/organization/entity/OrganizationId.java
 /home/maelton/Projects/br.com.maelton/bsc/src/main/java/br/com/maelton/bsc/infrastructure/config/SpringConfiguration.java
