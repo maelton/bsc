@@ -1,4 +1,3 @@
-
 package br.com.maelton.bsc.infrastructure.organization.adapter.out.persistence;
 
 import java.util.HashSet;
@@ -15,7 +14,6 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -50,7 +48,7 @@ public class OrganizationEntity {
     @OneToMany(
         mappedBy = "organization", 
         orphanRemoval = true,
-        cascade = CascadeType.REMOVE
+        cascade = CascadeType.ALL
     )
     private Set<OrganizationValueEntity> values = new HashSet<>();
 
