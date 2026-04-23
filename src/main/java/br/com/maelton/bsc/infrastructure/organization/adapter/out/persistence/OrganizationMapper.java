@@ -3,9 +3,12 @@ package br.com.maelton.bsc.infrastructure.organization.adapter.out.persistence;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.springframework.stereotype.Component;
+
 import br.com.maelton.bsc.domain.organization.entity.Organization;
 import br.com.maelton.bsc.domain.organization.entity.OrganizationId;
 
+@Component
 public class OrganizationMapper {
     public OrganizationEntity toJpaEntity(Organization org) {
         OrganizationEntity jpaEntity = new OrganizationEntity(
