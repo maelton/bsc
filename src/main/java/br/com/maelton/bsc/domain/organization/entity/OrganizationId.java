@@ -5,7 +5,7 @@ import java.util.UUID;
 
 public record OrganizationId(UUID value) {
     public OrganizationId {
-        Objects.requireNonNull(value, "value cannot be null");
+        Objects.requireNonNull(value, "OrganizationId value is required.");
     }
 
     public static OrganizationId generate() {

@@ -7,31 +7,32 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.maelton.bsc.application.organization.port.in.CreateOrganizationResult;
-import br.com.maelton.bsc.application.organization.port.in.CreateOrganizationUseCase;
-import br.com.maelton.bsc.infrastructure.organization.adapter.in.web.dto.CreateOrganizationRequestDto;
+import br.com.maelton.bsc.application.organization.port.in.ManageOrganizationUseCase;
+import br.com.maelton.bsc.application.organization.response.OrganizationResponse;
+import br.com.maelton.bsc.infrastructure.organization.adapter.in.web.dto.CreateOrganizationDto;
 import br.com.maelton.bsc.infrastructure.organization.adapter.in.web.dto.OrganizationResponseDto;
+
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("api/v1/orgs")
 public class OrganizationController {
-    private final CreateOrganizationUseCase createOrgUseCase;
+    private final ManageOrganizationUseCase manageOrgUseCase;
     private final OrganizationWebMapper webMapper;
     
     public OrganizationController(
-        CreateOrganizationUseCase createOrgUseCase,
+        ManageOrganizationUseCase manageOrgUseCase,
         OrganizationWebMapper webMapper
     ) {
-        this.createOrgUseCase = createOrgUseCase;
+        this.manageOrgUseCase = manageOrgUseCase;
         this.webMapper = webMapper;
     }
 
     @PostMapping
     public ResponseEntity<OrganizationResponseDto> create(
-        @RequestBody @Valid CreateOrganizationRequestDto dto
+        @RequestBody @Valid CreateOrganizationDto dto
     ) {
-        CreateOrganizationResult org = createOrgUseCase.create(
+        OrganizationResponse org = manageOrgUseCase.create(
             webMapper.toCreateOrganizationCommand(dto)
         );
 

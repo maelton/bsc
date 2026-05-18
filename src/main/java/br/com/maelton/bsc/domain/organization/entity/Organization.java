@@ -1,14 +1,24 @@
 package br.com.maelton.bsc.domain.organization.entity;
 
-import java.util.Set;
+import java.util.List;
+
+import br.com.maelton.bsc.domain.organization.vo.OrganizationName;
 
 public class Organization {
     private OrganizationId id;
-    private String name;
+    private OrganizationName name;
     private String mission;
     private String vision;
-    private Set<String> values;
+    private List<String> values;
 
+    public OrganizationId getId() {
+        return id;
+    }
+    
+    public String getName() {
+        return name.value();
+    }
+    
     public String getMission() {
         return mission;
     }
@@ -17,16 +27,8 @@ public class Organization {
         return vision;
     }
 
-    public Set<String> getValues() {
+    public List<String> getValues() {
         return values;
-    }
-
-    public OrganizationId getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public Organization(
@@ -34,10 +36,10 @@ public class Organization {
         String name,
         String mission,
         String vision,
-        Set<String> values
+        List<String> values
     ) {
         this.id = id;
-        this.name = name;
+        this.name = new OrganizationName(name);
         this.mission = mission;
         this.vision = vision;
         this.values = values;
@@ -47,10 +49,10 @@ public class Organization {
         String name,
         String mission,
         String vision,
-        Set<String> values
+        List<String> values
     ) {
         id = OrganizationId.generate();
-        this.name = name;
+        this.name = new OrganizationName(name);
         this.mission = mission;
         this.vision = vision;
         this.values = values;

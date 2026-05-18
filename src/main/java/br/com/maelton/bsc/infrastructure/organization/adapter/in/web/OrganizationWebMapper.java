@@ -2,14 +2,15 @@ package br.com.maelton.bsc.infrastructure.organization.adapter.in.web;
 
 import org.springframework.stereotype.Component;
 
-import br.com.maelton.bsc.application.organization.port.in.CreateOrganizationCommand;
-import br.com.maelton.bsc.application.organization.port.in.CreateOrganizationResult;
-import br.com.maelton.bsc.infrastructure.organization.adapter.in.web.dto.CreateOrganizationRequestDto;
+import br.com.maelton.bsc.application.organization.command.CreateOrganizationCommand;
+import br.com.maelton.bsc.application.organization.response.OrganizationResponse;
+import br.com.maelton.bsc.infrastructure.organization.adapter.in.web.dto.CreateOrganizationDto;
 import br.com.maelton.bsc.infrastructure.organization.adapter.in.web.dto.OrganizationResponseDto;
+
 @Component
 public final class OrganizationWebMapper {
 
-    public CreateOrganizationCommand toCreateOrganizationCommand(CreateOrganizationRequestDto dto) {
+    public CreateOrganizationCommand toCreateOrganizationCommand(CreateOrganizationDto dto) {
         return new CreateOrganizationCommand(
             dto.name(),
             dto.mission(),
@@ -18,15 +19,13 @@ public final class OrganizationWebMapper {
         );
     }
 
-    public OrganizationResponseDto toOrganizationResponseDto(
-        CreateOrganizationResult createResult
-    ) {
+    public OrganizationResponseDto toOrganizationResponseDto(OrganizationResponse orgResponse) {
         return new OrganizationResponseDto(
-            createResult.id().value(),
-            createResult.name(),
-            createResult.mission(),
-            createResult.vision(),
-            createResult.values()
+            orgResponse.id(),
+            orgResponse.name(),
+            orgResponse.mission(),
+            orgResponse.vision(),
+            orgResponse.values()
         );
     }
     

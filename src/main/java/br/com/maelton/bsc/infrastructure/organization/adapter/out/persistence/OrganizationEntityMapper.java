@@ -1,7 +1,6 @@
 package br.com.maelton.bsc.infrastructure.organization.adapter.out.persistence;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 import org.springframework.stereotype.Component;
 
@@ -9,7 +8,7 @@ import br.com.maelton.bsc.domain.organization.entity.Organization;
 import br.com.maelton.bsc.domain.organization.entity.OrganizationId;
 
 @Component
-public class OrganizationMapper {
+public class OrganizationEntityMapper {
     public OrganizationEntity toJpaEntity(Organization org) {
         OrganizationEntity jpaEntity = new OrganizationEntity(
             org.getId().value(),
@@ -28,11 +27,10 @@ public class OrganizationMapper {
     }
 
     public Organization toDomain(OrganizationEntity jpaEntity) {
-        Set<String> orgValues = new HashSet<>();
-        if(jpaEntity.getValues() != null && !jpaEntity.getValues().isEmpty()) {
-            for(OrganizationValueEntity value : jpaEntity.getValues()) {
-                orgValues.add(value.getText());            }
-        }
+        List<String> orgValues = jpaEntity.getValues()
+                                .stream()
+                                .map(OrganizationValueEntity::getText)
+                                .toList();
         
         return new Organization(
             new OrganizationId(jpaEntity.getUuid()),
