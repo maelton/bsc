@@ -31,8 +31,8 @@ public class OrganizationPersistenceAdapter implements OrganizationRepository {
     }
 
     @Override
-    public Organization getById(OrganizationId id) {
-        Optional<OrganizationEntity> org = jpaRepository.findById(id.value());
+    public Optional<Organization> findById(OrganizationId id) {
+        Optional<OrganizationEntity> optional = jpaRepository.findByUuid(id.value());
+        return optional.map(entity -> orgMapper.toDomain(entity));
     }
-
 }
