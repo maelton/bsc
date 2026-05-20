@@ -1,0 +1,93 @@
+{
+  "info": {
+    "_postman_id": "373ddb54-f309-4248-b39a-a6d236cbf2a9",
+    "name": "bsc",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "39876783"
+  },
+  "item": [
+    {
+      "name": "Organization",
+      "item": [
+        {
+          "name": "Create Organization",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Maelton LTDA\",\n    \"mission\": \"\",\n    \"vision\": \"\",\n    \"values\": [\"Nosce te ipsum\"]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/orgs",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "orgs"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get By UUID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/orgs/faa0cb75-ff0b-4250-ac4e-d628450b7c50",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "orgs",
+                "faa0cb75-ff0b-4250-ac4e-d628450b7c50"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_port",
+      "value": ""
+    },
+    {
+      "key": "base_url",
+      "value": ""
+    }
+  ]
+}
