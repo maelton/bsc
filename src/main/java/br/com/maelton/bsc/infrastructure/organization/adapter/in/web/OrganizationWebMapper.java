@@ -2,16 +2,27 @@ package br.com.maelton.bsc.infrastructure.organization.adapter.in.web;
 
 import org.springframework.stereotype.Component;
 
-import br.com.maelton.bsc.application.organization.command.CreateOrganizationCommand;
+import br.com.maelton.bsc.application.organization.command.CreateUpdateOrganizationCommand;
+import br.com.maelton.bsc.application.organization.command.PatchOrganizationCommand;
 import br.com.maelton.bsc.application.organization.response.OrganizationResponse;
-import br.com.maelton.bsc.infrastructure.organization.adapter.in.web.dto.CreateOrganizationDto;
+import br.com.maelton.bsc.infrastructure.organization.adapter.in.web.dto.CreateUpdateOrganizationDto;
 import br.com.maelton.bsc.infrastructure.organization.adapter.in.web.dto.OrganizationResponseDto;
+import br.com.maelton.bsc.infrastructure.organization.adapter.in.web.dto.PatchOrganizationDto;
 
 @Component
 public final class OrganizationWebMapper {
 
-    public CreateOrganizationCommand toCreateOrganizationCommand(CreateOrganizationDto dto) {
-        return new CreateOrganizationCommand(
+    public CreateUpdateOrganizationCommand toCreateUpdateOrganizationCommand(CreateUpdateOrganizationDto dto) {
+        return new CreateUpdateOrganizationCommand(
+            dto.name(),
+            dto.mission(),
+            dto.vision(),
+            dto.values()
+        );
+    }
+
+    public PatchOrganizationCommand toPatchOrganizationCommand(PatchOrganizationDto dto) {
+        return new PatchOrganizationCommand(
             dto.name(),
             dto.mission(),
             dto.vision(),

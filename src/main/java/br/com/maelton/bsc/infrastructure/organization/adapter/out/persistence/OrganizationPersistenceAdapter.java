@@ -1,5 +1,6 @@
 package br.com.maelton.bsc.infrastructure.organization.adapter.out.persistence;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Repository;
@@ -14,10 +15,10 @@ public class OrganizationPersistenceAdapter implements OrganizationRepository {
     private final OrganizationEntityMapper orgMapper;
 
     OrganizationPersistenceAdapter(
-        OrganizationJpaRepository springRepository,
+        OrganizationJpaRepository jpaRepository,
         OrganizationEntityMapper orgMapper
     ) {
-        this.jpaRepository = springRepository;
+        this.jpaRepository = jpaRepository;
         this.orgMapper = orgMapper;
     }
 
@@ -34,5 +35,19 @@ public class OrganizationPersistenceAdapter implements OrganizationRepository {
     public Optional<Organization> findById(OrganizationId id) {
         Optional<OrganizationEntity> optional = jpaRepository.findByUuid(id.value());
         return optional.map(entity -> orgMapper.toDomain(entity));
+    }
+
+    @Override
+    public List<Organization> findAll() {
+        List<OrganizationEntity> entities = jpaRepository.findAll();
+        
+        return entities.stream()
+                        .map(entity -> orgMapper.toDomain(entity))
+                        .toList();
+    }
+
+    @Override
+    public void deleteById(OrganizationId id) {
+        jpaRepository.deleteByUuid(id.value());
     }
 }

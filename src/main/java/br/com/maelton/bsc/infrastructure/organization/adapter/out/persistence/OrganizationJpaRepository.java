@@ -10,4 +10,5 @@ import java.util.UUID;
 @Repository
 public interface OrganizationJpaRepository extends ListCrudRepository<OrganizationEntity, Long> {
     Optional<OrganizationEntity> findByUuid(UUID uuid);
+    void deleteByUuid(UUID id);
 }
