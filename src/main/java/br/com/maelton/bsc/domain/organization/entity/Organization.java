@@ -92,9 +92,9 @@ public class Organization {
         String vision,
         List<String> values
     ) {
-        if(this.name != null) this.name = new OrganizationName(name);
-        if(this.mission != null) this.mission = mission;
-        if(this.vision != null) this.vision = vision;
-        if(this.values != values) this.values = values;
+        if(name != null) this.name = new OrganizationName(name);
+        if(mission != null) this.mission = mission;
+        if(vision != null) this.vision = vision;
+        if(values != null) this.values = values;
     }
 }
