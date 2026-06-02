@@ -52,7 +52,7 @@ public class OrganizationController {
     @GetMapping("/{uuid}")
     public ResponseEntity<OrganizationResponseDto> getByUuid(@PathVariable UUID uuid) {
         OrganizationId id = new OrganizationId(uuid);
-        OrganizationResponse org = manageOrgUseCase.findById(id);
+        OrganizationResponse org = manageOrgUseCase.getById(id);
         
         OrganizationResponseDto response = webMapper.toOrganizationResponseDto(org);
         return ResponseEntity.ok(response);
@@ -60,7 +60,7 @@ public class OrganizationController {
 
     @GetMapping
     public ResponseEntity<List<OrganizationResponseDto>> getAll() {
-        List<OrganizationResponse> orgs = manageOrgUseCase.findAll();
+        List<OrganizationResponse> orgs = manageOrgUseCase.listAll();
         List<OrganizationResponseDto> response = orgs.stream()
                                                     .map(webMapper::toOrganizationResponseDto)
                                                     .toList();
@@ -74,7 +74,7 @@ public class OrganizationController {
         @RequestBody @Valid CreateUpdateOrganizationDto dto
     ) {
         OrganizationId id = new OrganizationId(uuid);
-        OrganizationResponse updated = manageOrgUseCase.updateById(
+        OrganizationResponse updated = manageOrgUseCase.update(
             id,
             webMapper.toCreateUpdateOrganizationCommand(dto) 
         );
@@ -89,7 +89,7 @@ public class OrganizationController {
         @RequestBody PatchOrganizationDto dto
     ) {
         OrganizationId id = new OrganizationId(uuid);
-        OrganizationResponse patched = manageOrgUseCase.patchById(
+        OrganizationResponse patched = manageOrgUseCase.patch(
             id,
             webMapper.toPatchOrganizationCommand(dto) 
         );

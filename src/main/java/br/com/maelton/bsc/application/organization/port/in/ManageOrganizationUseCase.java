@@ -9,9 +9,9 @@ import br.com.maelton.bsc.domain.organization.entity.OrganizationId;
 
 public interface ManageOrganizationUseCase {
     OrganizationResponse create(CreateUpdateOrganizationCommand command);
-    OrganizationResponse findById(OrganizationId id);
-    List<OrganizationResponse> findAll();
-    OrganizationResponse updateById(OrganizationId id, CreateUpdateOrganizationCommand command);
-    OrganizationResponse patchById(OrganizationId id, PatchOrganizationCommand command);
-    void deleteById(OrganizationId id);
+    OrganizationResponse getById(OrganizationId id);
+    List<OrganizationResponse> listAll();
+    OrganizationResponse update(OrganizationId id, CreateUpdateOrganizationCommand command);
+    OrganizationResponse patch(OrganizationId id, PatchOrganizationCommand command);
+    void delete(OrganizationId id);
 }

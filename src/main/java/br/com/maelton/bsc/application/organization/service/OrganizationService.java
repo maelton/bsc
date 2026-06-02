@@ -30,13 +30,13 @@ public class OrganizationService implements ManageOrganizationUseCase {
             command.vision(),
             command.values()
         );
-        Organization saved = orgRepository.save(org);
+        Organization saved = orgRepository.create(org);
 
         return OrganizationResponse.from(saved);
     }
 
     @Override
-    public OrganizationResponse findById(OrganizationId id) {
+    public OrganizationResponse getById(OrganizationId id) {
         Optional<Organization> optional = orgRepository.findById(id);
         
         return optional.map(OrganizationResponse::from).orElseThrow(
@@ -47,13 +47,13 @@ public class OrganizationService implements ManageOrganizationUseCase {
     }
 
     @Override
-    public List<OrganizationResponse> findAll() {
+    public List<OrganizationResponse> listAll() {
         List<Organization> orgs = orgRepository.findAll();
         return orgs.stream().map(OrganizationResponse::from).toList();
     }
 
     @Override
-    public OrganizationResponse updateById(OrganizationId id, CreateUpdateOrganizationCommand command) {
+    public OrganizationResponse update(OrganizationId id, CreateUpdateOrganizationCommand command) {
         Organization saved = orgRepository.findById(id).orElseThrow(
             () -> new OrganizationNotFoundException(
                 String.format("Organization with ID '%s' could not be found", id.value())
@@ -66,17 +66,12 @@ public class OrganizationService implements ManageOrganizationUseCase {
             command.values()
         );
 
-        Organization updated = orgRepository.save(saved);
+        Organization updated = orgRepository.update(saved);
         return OrganizationResponse.from(updated);
     }
 
     @Override
-    public void deleteById(OrganizationId id) {
-        orgRepository.deleteById(id);
-    }
-
-    @Override
-    public OrganizationResponse patchById(OrganizationId id, PatchOrganizationCommand command) {
+    public OrganizationResponse patch(OrganizationId id, PatchOrganizationCommand command) {
         Organization saved = orgRepository.findById(id).orElseThrow(
             () -> new OrganizationNotFoundException(
                 String.format("Organization with ID '%s' could not be found", id.value())
@@ -89,7 +84,13 @@ public class OrganizationService implements ManageOrganizationUseCase {
             command.values()
         );
 
-        Organization patched = orgRepository.save(saved);
+        Organization patched = orgRepository.update(saved);
         return OrganizationResponse.from(patched);
     }
+
+    @Override
+    public void delete(OrganizationId id) {
+        orgRepository.deleteById(id);
+    }
+
 }

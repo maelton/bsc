@@ -1,6 +1,7 @@
 package br.com.maelton.bsc.infrastructure.organization.adapter.out.persistence;
 
-import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
 
@@ -27,10 +28,10 @@ public class OrganizationEntityMapper {
     }
 
     public Organization toDomain(OrganizationEntity jpaEntity) {
-        List<String> orgValues = jpaEntity.getValues()
+        Set<String> orgValues = jpaEntity.getValues()
                                 .stream()
                                 .map(OrganizationValueEntity::getText)
-                                .toList();
+                                .collect(Collectors.toSet());
         
         return new Organization(
             new OrganizationId(jpaEntity.getUuid()),
