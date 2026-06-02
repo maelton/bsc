@@ -52,6 +52,85 @@
             }
           },
           "response": []
+        },
+        {
+          "name": "Get All",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/orgs",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "orgs"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update By UUID",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Maelton LTDA Updated\",\n    \"mission\": \"\",\n    \"vision\": \"\",\n    \"values\": [\"Nosce te ipsum\"]\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/orgs/faa0cb75-ff0b-4250-ac4e-d628450b7c50",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "orgs",
+                "faa0cb75-ff0b-4250-ac4e-d628450b7c50"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Partial Update By UUID",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/orgs/94ea0d02-db80-4310-a62b-d2468b3acdbb",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "orgs",
+                "94ea0d02-db80-4310-a62b-d2468b3acdbb"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete By UUID",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Maelton LTDA Updated\",\n    \"mission\": \"\",\n    \"vision\": \"\",\n    \"values\": [\"Nosce te ipsum\"]\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/orgs/faa0cb75-ff0b-4250-ac4e-d628450b7c50",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "orgs",
+                "faa0cb75-ff0b-4250-ac4e-d628450b7c50"
+              ]
+            }
+          },
+          "response": []
         }
       ]
     }
