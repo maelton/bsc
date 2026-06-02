@@ -23,7 +23,7 @@ public class OrganizationPersistenceAdapter implements OrganizationRepository {
     }
 
     @Override
-    public Organization save(Organization organization) {
+    public Organization create(Organization organization) {
         OrganizationEntity orgEntity = jpaRepository.save(
             orgMapper.toJpaEntity(organization)
         );
@@ -44,6 +44,25 @@ public class OrganizationPersistenceAdapter implements OrganizationRepository {
         return entities.stream()
                         .map(entity -> orgMapper.toDomain(entity))
                         .toList();
+    }
+
+    @Override
+    public Organization update(Organization organization) {
+        OrganizationEntity entity = jpaRepository.findByUuid(
+            organization.getId().value()
+        ).orElseThrow(
+            () -> new OrganizationEntityPersistenceException(
+                String.format(
+                    "OrganizationEntity with UUID '%s' could not be found",
+                    organization.getId().value()
+                )
+            )
+        );
+
+        entity.update(organization);
+        OrganizationEntity updated = jpaRepository.save(entity);
+
+        return orgMapper.toDomain(updated);
     }
 
     @Override
