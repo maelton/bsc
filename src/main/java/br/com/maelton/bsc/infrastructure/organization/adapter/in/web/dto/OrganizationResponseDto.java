@@ -1,6 +1,6 @@
 package br.com.maelton.bsc.infrastructure.organization.adapter.in.web.dto;
 
-import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 public record OrganizationResponseDto(
@@ -8,5 +8,5 @@ public record OrganizationResponseDto(
     String name,
     String mission,
     String vision,
-    List<String> values
+    Set<String> values
 ) {}

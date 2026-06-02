@@ -1,6 +1,6 @@
 package br.com.maelton.bsc.infrastructure.organization.adapter.in.web.dto;
 
-import java.util.List;
+import java.util.Set;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -13,5 +13,5 @@ public record CreateUpdateOrganizationDto(
     String name,
     String mission,
     String vision,
-    List<String> values
+    Set<String> values
 ) {}

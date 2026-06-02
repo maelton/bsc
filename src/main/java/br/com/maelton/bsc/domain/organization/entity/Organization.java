@@ -1,6 +1,7 @@
 package br.com.maelton.bsc.domain.organization.entity;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import br.com.maelton.bsc.domain.organization.vo.OrganizationName;
 
@@ -9,14 +10,14 @@ public class Organization {
     private OrganizationName name;
     private String mission;
     private String vision;
-    private List<String> values;
+    private Set<String> values;
 
     public Organization(
         OrganizationId id, 
         String name,
         String mission,
         String vision,
-        List<String> values
+        Set<String> values
     ) {
         this.id = id;
         this.name = new OrganizationName(name);
@@ -29,7 +30,7 @@ public class Organization {
         String name,
         String mission,
         String vision,
-        List<String> values
+        Set<String> values
     ) {
         id = OrganizationId.generate();
         this.name = new OrganizationName(name);
@@ -54,7 +55,7 @@ public class Organization {
         return vision;
     }
 
-    public List<String> getValues() {
+    public Set<String> getValues() {
         return values;
     }
 
@@ -70,7 +71,7 @@ public class Organization {
         this.vision = vision;
     }
 
-    public void setValues(List<String> values) {
+    public void setValues(Set<String> values) {
         this.values = values;
     }
 
@@ -78,7 +79,7 @@ public class Organization {
         OrganizationName name,
         String mission,
         String vision,
-        List<String> values
+        Set<String> values
     ) {
         this.name = name;
         this.mission = mission;
@@ -90,11 +91,11 @@ public class Organization {
         String name,
         String mission,
         String vision,
-        List<String> values
+        Set<String> values
     ) {
         if(name != null) this.name = new OrganizationName(name);
         if(mission != null) this.mission = mission;
         if(vision != null) this.vision = vision;
-        if(values != null) this.values = values;
+        if(values != null) this.values = new HashSet<>(values);;
     }
 }

@@ -3,7 +3,9 @@ package br.com.maelton.bsc.infrastructure.organization.adapter.out.persistence;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
+import br.com.maelton.bsc.domain.organization.entity.Organization;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -52,12 +54,21 @@ public class OrganizationEntity {
     )
     private Set<OrganizationValueEntity> values = new HashSet<>();
 
-    public void setValues(Set<OrganizationValueEntity> values) {
-        this.values = values;
+    public void addValue(OrganizationValueEntity value) {
+        value.setOrganization(this);
+        values.add(value);
     }
 
-    public void addValue(OrganizationValueEntity value) {
-        values.add(value);
+    public void removeValue(OrganizationValueEntity value) {
+        values.remove(value);
+    }
+
+    public void replaceAllValues(Set<OrganizationValueEntity> values) {
+        this.values.clear();
+        for(OrganizationValueEntity value : values) {
+            value.setOrganization(this);
+            this.values.add(value);
+        }
     }
 
     public OrganizationEntity(
@@ -70,5 +81,15 @@ public class OrganizationEntity {
         this.name = name;
         this.mission = mission;
         this.vision = vision;
+    }
+
+    public void update(Organization organization) {
+        this.name = organization.getName();
+        this.mission = organization.getMission();
+        this.vision = organization.getVision();
+        replaceAllValues(organization.getValues().stream()
+                            .map(value -> new OrganizationValueEntity(value, this))
+                            .collect(Collectors.toSet())
+        );
     }
 }

@@ -1,6 +1,6 @@
 package br.com.maelton.bsc.application.organization.response;
 
-import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 import br.com.maelton.bsc.domain.organization.entity.Organization;
@@ -10,7 +10,7 @@ public record OrganizationResponse(
     String name,
     String mission,
     String vision,
-    List<String> values
+    Set<String> values
 ) {
     public static OrganizationResponse from(Organization organization) {
         return new OrganizationResponse(

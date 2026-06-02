@@ -1,5 +1,7 @@
 package br.com.maelton.bsc.infrastructure.organization.adapter.out.persistence;
 
+import java.util.Objects;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -44,5 +46,22 @@ public class OrganizationValueEntity {
     public OrganizationValueEntity(String text, OrganizationEntity organization) {
         this.organization = organization;
         this.text = text;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if(this == o) return true;
+        if(o == null || getClass() != o.getClass()) return false;
+        OrganizationValueEntity other = (OrganizationValueEntity) o;
+
+        return Objects.equals(
+                    organization.getId(), 
+                    other.getOrganization().getId()
+                ) && Objects.equals(text, other.getText());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(organization.getId(), text);
     }
 }
