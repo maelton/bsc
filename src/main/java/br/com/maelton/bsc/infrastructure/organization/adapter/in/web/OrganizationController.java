@@ -100,6 +100,9 @@ public class OrganizationController {
 
     @DeleteMapping("/{uuid}")
     public ResponseEntity<Void> deleteByUuid(@PathVariable UUID uuid) {
+        OrganizationId id = new OrganizationId(uuid);
+        manageOrgUseCase.delete(id);
+        
         return ResponseEntity.noContent().build();
     }    
 }
