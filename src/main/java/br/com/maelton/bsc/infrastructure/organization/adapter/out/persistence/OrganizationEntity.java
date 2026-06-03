@@ -63,11 +63,20 @@ public class OrganizationEntity {
         values.remove(value);
     }
 
-    public void replaceAllValues(Set<OrganizationValueEntity> values) {
-        this.values.clear();
-        for(OrganizationValueEntity value : values) {
-            value.setOrganization(this);
-            this.values.add(value);
+    public void replaceAllValues(Set<String> newValuesTexts) {
+        values.removeIf(
+            existingValue -> !newValuesTexts.contains(existingValue.getText())
+        );
+
+        Set<String> existingValueTexts = values.stream()
+            .map(OrganizationValueEntity::getText)
+            .collect(Collectors.toSet());
+
+        for(String newValueText : newValuesTexts) {
+            if(!existingValueTexts.contains(newValueText)) {
+                OrganizationValueEntity newValue = new OrganizationValueEntity(newValueText, this);
+                values.add(newValue);
+            }
         }
     }
 
@@ -87,9 +96,6 @@ public class OrganizationEntity {
         this.name = organization.getName();
         this.mission = organization.getMission();
         this.vision = organization.getVision();
-        replaceAllValues(organization.getValues().stream()
-                            .map(value -> new OrganizationValueEntity(value, this))
-                            .collect(Collectors.toSet())
-        );
+        replaceAllValues(organization.getValues());
     }
 }

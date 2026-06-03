@@ -14,6 +14,9 @@ import br.com.maelton.bsc.domain.organization.entity.OrganizationId;
 import br.com.maelton.bsc.domain.organization.exception.OrganizationNotFoundException;
 import br.com.maelton.bsc.domain.organization.vo.OrganizationName;
 
+import jakarta.transaction.Transactional;
+
+@Transactional
 @ApplicationService
 public class OrganizationService implements ManageOrganizationUseCase {
     private final OrganizationRepository orgRepository;
